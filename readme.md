@@ -1,6 +1,6 @@
 # CIFAR-10 Image Classifier using ONNX & Flask
 
-### 🌐 Tester le projet en ligne : [https://cifar10-frontend-es3y82z9k-hugos-projects-acb0e19e.vercel.app/](https://cifar10-frontend-es3y82z9k-hugos-projects-acb0e19e.vercel.app/)
+### 🌐 Tester le projet en ligne : [https://cifar10-frontend-anw3nucq7-hugos-projects-acb0e19e.vercel.app/](https://cifar10-frontend-anw3nucq7-hugos-projects-acb0e19e.vercel.app/)
 
 ## 📌 Description
 Ce projet est une application de classification d'images basée sur un modèle de deep learning entraîné sur le dataset **CIFAR-10**. Le modèle a été entraîné avec **PyTorch**, exporté en **ONNX**, et est utilisé dans une API Flask pour faire des prédictions en temps réel.
