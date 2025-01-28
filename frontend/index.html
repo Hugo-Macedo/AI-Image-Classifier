@@ -27,7 +27,7 @@
             const formData = new FormData();
             formData.append('file', fileInput);
 
-            const response = await fetch('https://cifar10-backend.onrender.com', {
+            const response = await fetch('https://cifar10-backend.onrender.com/predict', {
                 method: 'POST',
                 body: formData
             });
