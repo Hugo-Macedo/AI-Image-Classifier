@@ -3,6 +3,7 @@ import onnxruntime as ort
 import numpy as np
 from PIL import Image
 from flask_cors import CORS
+from flask_cors import cross_origin
 
 # Charger le modèle ONNX
 session = ort.InferenceSession("improved_net.onnx")
@@ -11,7 +12,7 @@ session = ort.InferenceSession("improved_net.onnx")
 classes = ['avion', 'automobile', 'oiseau', 'chat', 'cerf', 'chien', 'grenouille', 'cheval', 'bateau', 'camion']
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": ["https://cifar10-frontend-q7yj5ixbw-hugos-projects-acb0e19e.vercel.app/"]}})
 
 def preprocess_image(image):
     # Redimensionner et normaliser l'image (32x32 pour CIFAR-10)
@@ -23,6 +24,7 @@ def preprocess_image(image):
     return image_array
 
 @app.route('/predict', methods=['POST'])
+@cross_origin()
 def predict():
     if 'file' not in request.files:
         return jsonify({'error': 'No file uploaded'}), 400
