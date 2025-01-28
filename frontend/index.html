@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier</title>
+</head>
+<body>
+    <h1>Classifier une Image avec le modèle CIFAR-10</h1>
+    <h2>Prédictions possibles sur ces catégories : avion, automobile, oiseau, chat, cerf, chien, grenouille, cheval, bateau, camion</h2>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" name="file" accept="image/*" required>
+        <button type="submit">Prédire</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('fileInput').files[0];
+
+            if (!fileInput) {
+                alert("Veuillez sélectionner une image !");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', fileInput);
+
+            const response = await fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                body: formData
+            });
+
+            const resultDiv = document.getElementById('result');
+            if (response.ok) {
+                const data = await response.json();
+                resultDiv.innerText = `Classe prédite : ${data.predicted_class}`;
+            } else {
+                resultDiv.innerText = "Erreur lors de la prédiction.";
+            }
+        });
+    </script>
+</body>
+</html>
